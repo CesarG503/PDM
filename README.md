@@ -236,3 +236,34 @@ Intent intent = new Intent(this, VistaQueSeVaAbrir.class):
 startActivity(intent);
 
 ```
+
+### Enviar datos entre vistas 
+
+```java
+
+Intent intent = new Intent(this, VistaQueSeVaAbrir.class);
+intent.putExtra("nombre", "César");
+intent.putExtra("EDAD", 25);
+intent.putExtra("ACTIVO", true);
+intent.putExtra("ALTURA", 1.75);
+intent.putExtra("lista", lista);
+
+startActivity(intent);
+
+```
+
+### usar datos enviados
+
+```java
+
+String nombre = getIntent().getStringExtra("nombre");
+int edad = getIntent().getIntExtra("EDAD", 0);
+boolean activo = getIntent().getBooleanExtra("ACTIVO", false);
+double altura = getIntent().getDoubleExtra("ALTURA", 0.0);
+ArrayList<String> lista = (ArrayList<String>) getIntent().getSerializableExtra("lista");
+
+//OTRA FORMA
+
+ArrayList<String> lista = getIntent().getStringArrayListExtra("lista"); // buscar el tipo de dato que se envio
+
+```
