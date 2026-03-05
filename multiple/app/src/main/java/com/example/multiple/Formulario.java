@@ -2,8 +2,10 @@ package com.example.multiple;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class Formulario extends AppCompatActivity {
 
     private Button boton;
+
+    private EditText letras;
 
     private EditText ingresar;
     private TextView texto;
@@ -44,6 +48,35 @@ public class Formulario extends AppCompatActivity {
 
         ingresar = findViewById(R.id.entrada);
 
+        letras = findViewById(R.id.letras);
+
+        letras.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        letras.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+        });
+
+        letras.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        letras.setFilters( new InputFilter[]{
+                new InputFilter.AllCaps(),
+                new InputFilter.LengthFilter(10)
+        });
+
+
         //boton.setOnClickListener(v ->
         //{
             //texto.setText("Hola mundo loco ");
@@ -53,6 +86,9 @@ public class Formulario extends AppCompatActivity {
         ingresar.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
 
 
+        Patterns.EMAIL_ADDRESS.matcher(ingresar.getText().toString()).matches(); //devuelve un true O false
+        ingresar.getText().toString().matches("[A-Za-z+]");
+        
         ingresar.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {

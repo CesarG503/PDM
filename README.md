@@ -141,8 +141,54 @@ if (texto.isEmpty()) {
     return;
 }
 
+if (texto.length() < 6) {
+    editText.setError("Mínimo 6 caracteres");
+}
+
+```
+###### matches Patterns  para validaciones con regex
+
+| Método            | Qué hace                   |
+| ----------------- | -------------------------- |
+| Pattern.          | Crea el patrón             |
+| matcher()         | Aplica el patrón           |
+| matches()         | Valida todo el texto       |
+| find()            | Busca coincidencia parcial |
+
+
+```java
+
+Patterns.EMAIL_ADDRESS
+Patterns.PHONE
+Patterns.WEB_URL
+Patterns.DOMAIN_NAME
+
 ```
 
+```java
+
+//solo usando matches !!
+
+afterTextChanged(Editable s) {
+    if (!s.toString().matches("[A-Za-z]*")) {
+        editText.setError("Solo letras");
+    }
+}
+
+```
+
+#### 3 
+
+
+```java
+
+// Se puede hacer lo mismo con lenght propiedad pero siempre permite escribir
+
+editText.setFilters(new InputFilter[]{
+    new InputFilter.LengthFilter(10),
+    new InputFiler.UpperCaseFilter()
+});
+```
 
 #### 4
 
@@ -167,6 +213,14 @@ editText.addTextChangedListener(new TextWatcher() {
 
 ```
 
+- InputType
+Controla teclado y tipo de dato.
+
+- InputFilter
+Bloquea entrada no permitida.
+
+- TextWatcher
+Escucha cambios de texto.
 
 
 

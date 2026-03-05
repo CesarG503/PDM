@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">multiple</string>
+
+    <string-array name="lista_departamentos">
+        <item>San Miguel</item>
+        <item>Morazan</item>
+        <item>La union</item>
+        <item>san salvador</item>
+    </string-array>
 </resources>
