@@ -179,7 +179,6 @@ afterTextChanged(Editable s) {
 
 #### 3 
 
-
 ```java
 
 // Se puede hacer lo mismo con lenght propiedad pero siempre permite escribir
@@ -222,5 +221,18 @@ Bloquea entrada no permitida.
 - TextWatcher
 Escucha cambios de texto.
 
+- matches Patterns 
+Valida texto con regex.
 
 
+# Abrir otras vistas con evento de un boton click 
+
+
+Creamos un evento para abrir otra vista y usamos la clase Intent
+
+```java
+
+Intent intent = new Intent(this, VistaQueSeVaAbrir.class):
+startActivity(intent);
+
+```

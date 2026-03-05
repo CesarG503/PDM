@@ -1,5 +1,6 @@
 package com.example.multiple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -17,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.text.Normalizer;
 
 public class Formulario extends AppCompatActivity {
 
@@ -88,7 +91,7 @@ public class Formulario extends AppCompatActivity {
 
         Patterns.EMAIL_ADDRESS.matcher(ingresar.getText().toString()).matches(); //devuelve un true O false
         ingresar.getText().toString().matches("[A-Za-z+]");
-        
+
         ingresar.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -121,4 +124,6 @@ public class Formulario extends AppCompatActivity {
 
         boton.setVisibility(View.GONE);
     }
+
+
 }

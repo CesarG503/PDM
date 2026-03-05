@@ -1,5 +1,6 @@
 package com.example.multiple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,7 +33,7 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         departamentos = findViewById(R.id.spinner);
-        texto = findViewById(R.id.texto);
+        texto = findViewById(R.id.seleccion);
 
         ArrayAdapter<CharSequence> data = ArrayAdapter.createFromResource(this, R.array.lista_departamentos, android.R.layout.simple_spinner_item);
 
@@ -86,6 +87,8 @@ public class MainActivity2 extends AppCompatActivity {
                 Departamento tem = (Departamento) parent.getItemAtPosition(position);
 
                 Toast.makeText(MainActivity2.this, tem.toString(), Toast.LENGTH_SHORT).show();
+
+                texto.setText(tem.toString());
             }
 
             @Override
@@ -95,5 +98,11 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
 
+    }
+
+    public void AbrirForm(View view) {
+
+        Intent intent = new Intent(MainActivity2.this, Formulario.class);
+        startActivity(intent);
     }
 }
