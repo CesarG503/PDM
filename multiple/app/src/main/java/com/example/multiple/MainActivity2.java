@@ -105,4 +105,15 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(MainActivity2.this, Formulario.class);
         startActivity(intent);
     }
+
+    public void IMC(View view) {
+
+        Intent intent = new Intent(this, IMC.class);
+        startActivity(intent);
+    }
+
+    public void irListaView(View view) {
+        Intent intent = new Intent(this, ListaView.class);
+        startActivity(intent);
+    }
 }

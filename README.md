@@ -267,3 +267,21 @@ ArrayList<String> lista = (ArrayList<String>) getIntent().getSerializableExtra("
 ArrayList<String> lista = getIntent().getStringArrayListExtra("lista"); // buscar el tipo de dato que se envio
 
 ```
+
+## Mostrar Imagenes y cambiarles el resource
+
+```java
+
+ImageView imageView = findViewById(R.id.imageView);
+imageView.setImageResource(R.drawable.imagen);
+
+```
+### para que la imagen no cresca indefinidamente
+```xml
+
+android:layout_width="120dp"
+android:layout_height="120dp"
+
+```
+
+Agregarle unas dimensiones
