@@ -42,6 +42,7 @@ public class Producto
 
     @Override
     public String toString() {
-        return  "Imagen: " + Imagen + ", Nombre_producto: " + Nombre_producto + ", precio: " + precio ;
+        return Nombre_producto;
+        //return  "Imagen: " + Imagen + ", Nombre_producto: " + Nombre_producto + ", precio: " + precio ;
     }
 }

@@ -285,3 +285,55 @@ android:layout_height="120dp"
 ```
 
 Agregarle unas dimensiones
+
+
+# Spinner o lista en android studio
+
+primero colocamos el spinner en el layout le asignamos un id
+
+```java
+
+Spinner spinner = findViewById(R.id.spinner); // localizamos el spinner
+
+```
+### añadir datos al spinner 
+
+```java
+
+String[] datos = {"Opción 1", "Opción 2", "Opción 3"}; // para clases y cualquier tipo de dato seria el mismo funcionamiento
+
+ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, datos);
+
+adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+spinner.setAdapter(adapter);
+```
+cuando el spinner esta ligado con una lista para actualizar si hay cmabio se usa
+
+```java
+adapter.notifyDataSetChanged();
+
+int total = spinner.getCount();
+```
+
+## definir datos del spinner desde XML
+
+```xml
+
+<string-array name="numeros">
+    <item>1</item>
+    <item>2</item>
+    <item>3</item>
+</string-array>
+
+```
+
+```java
+//INSTANCIAMOS EL ADAPTADOR CON LOS DATOS DEL XML
+adapter = ArrayAdapter.createFromResource(this, R.array.numeros, android.R.layout.simple_spinner_item);
+
+```
+Nota: el tipo de dato del arrayAdapter debe ser ArrayAdapter<CharSequence> adapter; CharSequence es una interfaz que implementa String
+
+
+

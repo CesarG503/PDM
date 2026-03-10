@@ -116,4 +116,14 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(this, ListaView.class);
         startActivity(intent);
     }
+
+    public void irSpinner(View view) {
+
+        Intent intent = new Intent(this, spinner_funcionalidad.class);
+
+        intent.putExtra("hola", "hola loco");
+
+        startActivity(intent);
+
+    }
 }
