@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".calcular_propina">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="186dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginBottom="35dp"
+        android:text="Calcular porpina"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/monto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/monto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="31dp"
+        android:ems="10"
+        android:hint="Ingrese el monto"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/propina"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/propina"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="27dp"
+        android:ems="10"
+        android:hint="Ingrese el % de porpina"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monto" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="22dp"
+        android:text="Monto:"
+        app:layout_constraintEnd_toStartOf="@+id/monto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="459dp"
+        android:text="% de propina"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/propina"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="171dp"
+        android:layout_marginBottom="356dp"
+        android:onClick="calcular"
+        android:text="calcular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/propina" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="342dp"
+        android:onClick="regresar"
+        android:text="Regresar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/propina" />
+
+    <TextView
+        android:id="@+id/total_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="241dp"
+        android:layout_marginBottom="248dp"
+        android:text="Total a pagar:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+</androidx.constraintlayout.widget.ConstraintLayout>
