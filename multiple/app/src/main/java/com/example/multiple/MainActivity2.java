@@ -126,4 +126,11 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void listaView(View view)
+    {
+        Intent intent = new Intent(this, listviewP.class);
+        startActivity(intent);
+
+    }
 }

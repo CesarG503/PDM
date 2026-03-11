@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Multiple">
         <activity
+            android:name=".listviewP"
+            android:exported="false" />
+        <activity
             android:name=".spinner_funcionalidad"
             android:exported="false" />
         <activity
