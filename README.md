@@ -336,4 +336,5 @@ adapter = ArrayAdapter.createFromResource(this, R.array.numeros, android.R.layou
 Nota: el tipo de dato del arrayAdapter debe ser ArrayAdapter<CharSequence> adapter; CharSequence es una interfaz que implementa String
 
 
+// ListView  + viewHolder
 

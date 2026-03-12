@@ -1,8 +1,10 @@
 package com.example.multiple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -129,9 +131,14 @@ public class ListaView extends AppCompatActivity {
             item.setText("");
         }
 
+    }
+    public void ver(View view) {
+        for (Producto item: adapter.getDataProducto())
+        {
+            if (item.isSeleccionado())
+            {
 
-
-
-
+            }
+        }
     }
 }

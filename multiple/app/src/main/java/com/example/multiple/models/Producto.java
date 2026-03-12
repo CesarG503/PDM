@@ -7,6 +7,8 @@ public class Producto
 
     private double precio;
 
+    private boolean isSeleccionado;
+
     public Producto() {
     }
 
@@ -14,6 +16,21 @@ public class Producto
         Imagen = imagen;
         this.precio = precio;
         Nombre_producto = nombre_producto;
+    }
+
+    public Producto(int imagen, String nombre_producto, double precio, boolean isSeleccionado) {
+        Imagen = imagen;
+        Nombre_producto = nombre_producto;
+        this.precio = precio;
+        this.isSeleccionado = isSeleccionado;
+    }
+
+    public boolean isSeleccionado() {
+        return isSeleccionado;
+    }
+
+    public void setSeleccionado(boolean seleccionado) {
+        isSeleccionado = seleccionado;
     }
 
     public int getImagen() {
