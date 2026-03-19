@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -71,8 +72,17 @@ public class spinner_productos extends AppCompatActivity {
                 }
                 else
                 {
+                    AlertDialog.Builder alog = new AlertDialog.Builder(spinner_productos.this);
+                    alog.setTitle("Error");
+                    alog.setMessage("Se a equivocado");
+                    alog.show();
                     aceptar = false;
                     cantidad.setError("Ingresa un numero");
+
+                    AlertDialog.Builder log = new AlertDialog.Builder(spinner_productos.this);
+
+                    alog.setMessage("goad");
+                    alog.show();
                 }
 
             }

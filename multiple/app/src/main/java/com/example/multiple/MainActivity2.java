@@ -15,7 +15,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.multiple.models.pruebaAdaptador;
+
 import java.util.ArrayList;
+
+import kotlin.jvm.internal.Ref;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -132,5 +136,11 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = new Intent(this, listviewP.class);
         startActivity(intent);
 
+    }
+
+    public void iradapter(View view) {
+
+        Intent intent = new Intent(this, pruebaAdaptador.class);
+        startActivity(intent);
     }
 }

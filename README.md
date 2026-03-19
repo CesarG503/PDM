@@ -336,5 +336,136 @@ adapter = ArrayAdapter.createFromResource(this, R.array.numeros, android.R.layou
 Nota: el tipo de dato del arrayAdapter debe ser ArrayAdapter<CharSequence> adapter; CharSequence es una interfaz que implementa String
 
 
-// ListView  + viewHolder
+# ListView  + viewHolder
 
+primero creamos un layout para cada item de la lista
+click derecho new -> layout -> layout resource file
+
+dentro del layout colocamos los componentes que queremos que tenga cada item de la lista
+
+# creamos la clase para el listview
+
+Ejemplo clase producto: agregamos los campos que esta clase tendra 
+
+# creamos el adaptador
+
+```java
+public class AdaptadorPrueba extends BaseAdapter
+
+```
+y creamos los metodos que requiere el adaptador
+
+```java
+
+    @Override
+    public int getCount() {
+        return 0;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        return null;
+    }
+```
+
+lo primero que debemos hacer es crear la variables de contexto y de informacion y hacer el constructor
+
+```java
+    public ArrayList<Producto> dataProducto;
+    public Context context;
+    public LayoutInflater inflater;
+
+
+    public AdaptadorPrueba(ArrayList<Producto> dataProducto, Context context)
+    {
+        this.dataProducto = dataProducto;
+        this.context = context;
+        this.inflater = LayoutInflater.from(context);
+    }
+```
+
+luego editamos los metodos predeterminados para retornar la informacion correspondiente
+
+```java
+
+    @Override
+    public int getCount() {
+        return dataProducto.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return dataProducto.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+```
+
+quedan algo asi: informacion basica del adaptador
+
+ahora empezamos a editar el metodo getView y creamos la clase viewholder
+
+definimos todos los objetos de nuestra visata item dentro del la clase viewHolder
+
+```java
+
+    static class ViewHolder
+    {
+        public TextView texto1;
+        public TextView texto2;
+    }
+```
+
+## metodo getView
+
+vamos partes
+
+```java
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        
+        ViewHolder holder;
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.prueba,parent, false); //inicializamos la vista
+            holder = new ViewHolder(); // inicializamos el viewholder
+
+            //enlazamos los componentes de la vista con el viewholder
+            holder.texto1 = convertView.findViewById(R.id.texto1);
+            holder.texto2 = convertView.findViewById(R.id.texto2);
+
+
+            //guardamos el viewholder en el tag de la vista
+            convertView.setTag(holder);
+
+            // se puede agregar aqui la logica de los items
+            // -setOnClickListeners
+            // -AddTextChangeListenersv
+ 
+        }
+        else
+        {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        // obtenemos el item de la lista
+        Producto producto = dataProducto.get(position);
+        holder.texto1.setText(producto.getNombre());
+        holder.texto2.setText(producto.getPrecio());
+
+        //retornamos la vista
+        return convertView;
+    }
