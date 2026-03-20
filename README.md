@@ -469,3 +469,80 @@ vamos partes
         //retornamos la vista
         return convertView;
     }
+
+
+## hacer un filtro de datos en el listview
+
+creamos un metodo para filtrar los datos
+
+```java
+    public void  filtrar(String categoria) // recibimos la palabra de filtro
+    {
+        dataComida.clear(); // limpiamos la lista
+
+        for (Comida comida: dataComidaOriginal )
+        {
+            if (comida.getCategoria().equals(categoria)) // si la categoria es igual a la palabra de filtro
+            {
+                dataComida.add(comida);
+            }
+        }
+        notifyDataSetChanged(); // notificamos que los datos han cambiado
+    }
+```
+
+Alertas 
+
+```java 
+
+AlertDialog.Builder dialogo = new AlertDialog.Builder(context);
+                                                       
+dialogo.setTitle("estas seguro?");
+dialogo.setMessage("de verdad ?");
+
+dialogo.setPositiveButton("si", (dialog,sw)->{
+                                                           
+    dataProducto.remove(position);
+    notifyDataSetChanged();
+                                                           
+});
+
+dialogo.setNegativeButton("no", (dialog,sw)->{
+    Toast.makeText(context, "no se elimino", Toast.LENGTH_SHORT).show();
+});
+
+dialogo.setNegativeButton("siu", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+    }
+});
+
+dialogo.show();
+
+```
+
+## para saber los cambios en el adaptador y poder ejecutar una funcion se usa:  registerDataSetObserver
+
+```java
+adaperComida.registerDataSetObserver(new DataSetObserver() {
+    @Override
+    public void onChanged() {
+        super.onChanged();
+
+        listaComidaCarro.clear();
+
+        for (Comida comida: adaperComida.dataComidaOriginal) {
+
+            if (comida.getCantidad() >0)
+            {
+                listaComidaCarro.add( comida);
+            }
+
+        }
+
+        adapterComidaCarro.notifyDataSetChanged();
+    }
+
+});
+```
