@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.recycleview.adapter.ProductoAdapter;
+import com.example.recycleview.adapter.PruebaAdapter;
 import com.example.recycleview.models.Producto;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public RecyclerView recycleViewProducto;
+    public PruebaAdapter adapterPrueba;
 
     public RecyclerView dataRecycler;
 
@@ -60,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
         dataRecycler.setAdapter(adapter);
 
 
+        recycleViewProducto = findViewById(R.id.recycleViewProducto);
+
+        adapterPrueba = new PruebaAdapter(dataProducto);
+
+        recycleViewProducto.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false) );
+        recycleViewProducto.setAdapter(adapterPrueba);
 
 
 
