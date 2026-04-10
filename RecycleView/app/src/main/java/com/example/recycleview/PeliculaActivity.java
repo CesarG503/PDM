@@ -10,7 +10,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.recycleview.adapter.DepartamentoAdapter;
 import com.example.recycleview.adapter.PeliculaAdapter;
+import com.example.recycleview.models.Departamento;
 import com.example.recycleview.models.Peliculas;
 
 import java.util.ArrayList;
@@ -20,6 +22,14 @@ public class PeliculaActivity extends AppCompatActivity {
     ArrayList<Peliculas> peliculas;
     PeliculaAdapter adapter;
     RecyclerView RecyclePelicula;
+
+
+    ArrayList<Departamento> departamentos;
+    DepartamentoAdapter departamentoAdapter;
+    RecyclerView RecycleDep;
+
+
+
 
 
     @Override
@@ -43,6 +53,21 @@ public class PeliculaActivity extends AppCompatActivity {
         RecyclePelicula.setLayoutManager( new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         RecyclePelicula.setAdapter(adapter);
+
+
+        
+        departamentos = new ArrayList<>();
+
+        departamentos.add(new Departamento("usulutan",1,12));
+        departamentoAdapter = new DepartamentoAdapter(departamentos);
+
+        RecycleDep= findViewById(R.id.RecycleDep);
+
+        RecycleDep.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        RecycleDep.setAdapter(departamentoAdapter);
+
+
 
 
     }
