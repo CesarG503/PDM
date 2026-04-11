@@ -95,3 +95,55 @@ Por ultimo hacemos el evento onCreateViewHolder() que es el que se encarga de cr
         return new viewHolder(view);
     }
 ```
+
+# definir el recycle view en el activity
+
+#1 inizializar lo necesario
+
+```java
+    RecyclerView RecycleMascota;
+    ArrayList<Mascota> mascotas;
+    MascotaAdapter adapterMascota;
+```
+
+#2 asignar el recycle view a la variable
+
+```java
+    RecycleMascota = findViewById(R.id.RecycleMascota);
+```
+#3 llenar el arreglo de datos
+
+```java
+    mascotas = new ArrayList<>();
+    mascotas.add(new Mascota("Firulais", R.drawable.firulais, 5));
+    mascotas.add(new Mascota("Rex", R.drawable.rex, 3));
+    mascotas.add(new Mascota("Luna", R.drawable.luna, 4));
+    mascotas.add(new Mascota("Max", R.drawable.max, 2));
+    mascotas.add(new Mascota("Bella", R.drawable.bella, 6));
+```
+
+#4 asignar el adapter al recycle view
+
+```java
+
+    adapterMascota = new MascotaAdapter(mascotas);
+
+    // asignar el layout manager al recycle view
+
+    RecycleMascota.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+    RecycleMascota.setAdapter(adapterMascota);
+```
+
+
+
+
+
+# NOTIFICAR CAMBIOS EN EL ADAPTADOR
+
+| Acción      | Método                   |
+| ----------- | ------------------------ |
+| Todo cambió | `notifyDataSetChanged()` |
+| Agregar     | `notifyItemInserted()`   |
+| Eliminar    | `notifyItemRemoved()`    |
+| Modificar   | `notifyItemChanged()`    |

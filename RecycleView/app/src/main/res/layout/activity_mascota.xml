@@ -12,8 +12,8 @@
         android:layout_width="413dp"
         android:layout_height="0dp"
         android:layout_marginTop="38dp"
-        android:layout_marginBottom="108dp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/seleccion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,23 @@
         android:text="Siguiente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RecycleMascota"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/seleccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="501dp"
+        android:text="Seleccion:"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/RecycleMascota"
+        app:layout_constraintTop_toBottomOf="@+id/RecycleMascota" />
 </androidx.constraintlayout.widget.ConstraintLayout>

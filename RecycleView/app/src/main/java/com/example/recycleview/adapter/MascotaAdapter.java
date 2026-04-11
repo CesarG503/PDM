@@ -19,10 +19,20 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.ViewHold
 {
 
     private ArrayList<Mascota> dataMascota;
+    private OnItemClickListener listener; //agrego este artributo
 
 
     public MascotaAdapter(ArrayList<Mascota> dataMascota) {
         this.dataMascota = dataMascota;
+    }
+
+    public MascotaAdapter(ArrayList<Mascota> dataMascota, OnItemClickListener listener) {
+        this.dataMascota = dataMascota;
+        this.listener = listener;
+    }
+    
+    public interface OnItemClickListener {
+        void onItemClick(Mascota item);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
@@ -36,6 +46,16 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.ViewHold
             textEdadM = itemView.findViewById(R.id.textEdadM);
             textAlturaM= itemView.findViewById(R.id.textAlturaM);
             imagenM = itemView.findViewById(R.id.imagenM);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(dataMascota.get(position));
+                    }
+                }
+            });
         }
     }
 
