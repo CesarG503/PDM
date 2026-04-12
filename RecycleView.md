@@ -136,6 +136,45 @@ Por ultimo hacemos el evento onCreateViewHolder() que es el que se encarga de cr
 ```
 
 
+# metodos de interface para hacer eventos de click en los items
+
+
+```java
+private Listener listener;
+
+public interface Listener {
+    void onClick(Mascota item);
+    void onEdit(Mascota item);
+    void onDelete(Mascota item);
+}
+````
+
+
+Ahora lo usamos dentro del OnBindViewHolder o ViewHolder para asignar los eventos
+
+ejemplo:
+
+Si el evento es click en el item completo en el viewHolder:
+```java
+itemView.setOnClickListener(v -> {
+    int position = getAdapterPosition();
+    if (position != RecyclerView.NO_POSITION && listener != null) {
+        listener.onClick(dataMascota.get(position));
+    }});
+```
+
+si el evento es un click en un boton dentro del item o otro objeto con el evento .setOnClickListener() dentro del viewHolder o OnBindViewHolder:
+
+```java
+    editButton.setOnClickListener(v -> {
+        int position = getAdapterPosition();
+        if (position != RecyclerView.NO_POSITION && listener != null) {
+            listener.onEdit(dataMascota.get(position));
+        }});
+```
+
+
+
 
 
 

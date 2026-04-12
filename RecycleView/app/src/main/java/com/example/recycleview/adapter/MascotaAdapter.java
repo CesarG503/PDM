@@ -1,9 +1,9 @@
 package com.example.recycleview.adapter;
 
-import android.media.ImageReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,67 +15,79 @@ import com.example.recycleview.models.Mascota;
 
 import java.util.ArrayList;
 
-public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.ViewHolder>
-{
+public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.ViewHolder> {
 
     private ArrayList<Mascota> dataMascota;
-    private OnItemClickListener listener; //agrego este artributo
+    private Listener listener;
 
-
-    public MascotaAdapter(ArrayList<Mascota> dataMascota) {
-        this.dataMascota = dataMascota;
+    public interface Listener {
+        void onClick(Mascota item);
+        void onEdit(Mascota item);
+        void onDelete(Mascota item);
     }
 
-    public MascotaAdapter(ArrayList<Mascota> dataMascota, OnItemClickListener listener) {
+    public MascotaAdapter(ArrayList<Mascota> dataMascota, Listener listener) {
         this.dataMascota = dataMascota;
         this.listener = listener;
     }
-    
-    public interface OnItemClickListener {
-        void onItemClick(Mascota item);
-    }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView textNombreM, textEdadM, textAlturaM;
         ImageView imagenM;
+        ImageButton btnEdit, btnDelete;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             textNombreM = itemView.findViewById(R.id.textNombreM);
             textEdadM = itemView.findViewById(R.id.textEdadM);
-            textAlturaM= itemView.findViewById(R.id.textAlturaM);
+            textAlturaM = itemView.findViewById(R.id.textAlturaM);
             imagenM = itemView.findViewById(R.id.imagenM);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getPosition();
-                    if (position != RecyclerView.NO_POSITION && listener != null) {
-                        listener.onItemClick(dataMascota.get(position));
-                    }
+            btnEdit = itemView.findViewById(R.id.btnEdit);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
+            
+            // Click en el item completo
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && listener != null) {
+                    listener.onClick(dataMascota.get(position));
                 }
             });
+
+            // Click en el botón Editar
+            if (btnEdit != null) {
+                btnEdit.setOnClickListener(v -> {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onEdit(dataMascota.get(position));
+                    }
+                });
+            }
+
+            // Click en el botón Eliminar
+            if (btnDelete != null) {
+                btnDelete.setOnClickListener(v -> {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onDelete(dataMascota.get(position));
+                    }
+                });
+            }
         }
     }
 
     @NonNull
     @Override
-    public MascotaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mascota,parent,false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_mascota, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MascotaAdapter.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Mascota mascota = dataMascota.get(position);
-
         holder.textNombreM.setText(mascota.getNombrePerro());
-        holder.textAlturaM.setText(String.valueOf( mascota.getAlturaPerro()));
-        holder.textEdadM.setText(String.valueOf( mascota.getEdadPerro()));
-
+        holder.textAlturaM.setText(String.valueOf(mascota.getAlturaPerro()));
+        holder.textEdadM.setText(String.valueOf(mascota.getEdadPerro()));
         holder.imagenM.setImageResource(mascota.getImg());
     }
 
