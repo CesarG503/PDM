@@ -3,6 +3,7 @@ package com.example.recycleview.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.ViewHolder> {
 
     private ArrayList<Mascota> dataMascota;
+    private ArrayList<Mascota> dataMascotaCopia;
     private Listener listener;
 
     public interface Listener {
@@ -28,7 +30,21 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.ViewHold
 
     public MascotaAdapter(ArrayList<Mascota> dataMascota, Listener listener) {
         this.dataMascota = dataMascota;
+        this.dataMascotaCopia = new ArrayList<>(dataMascota);
         this.listener = listener;
+    }
+
+    public void filtrar(String busqueda)
+    {
+        dataMascota.clear();
+        for (Mascota mascota: dataMascotaCopia)
+        {
+            if (mascota.getNombrePerro().equals(busqueda) || busqueda.equals("Todo") || mascota.getNombrePerro().contains(busqueda.toLowerCase()))
+            {
+                dataMascota.add(mascota);
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

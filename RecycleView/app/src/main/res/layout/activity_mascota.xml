@@ -12,8 +12,8 @@
         android:layout_width="413dp"
         android:layout_height="0dp"
         android:layout_marginTop="38dp"
-        android:layout_marginBottom="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/seleccion"
+        android:layout_marginBottom="188dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_mascota"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,4 +46,31 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/RecycleMascota"
         app:layout_constraintTop_toBottomOf="@+id/RecycleMascota" />
+
+    <Spinner
+        android:id="@+id/spinner_mascota"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/textBuscador"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RecycleMascota" />
+
+    <EditText
+        android:id="@+id/textBuscador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="78dp"
+        android:layout_marginEnd="78dp"
+        android:layout_marginBottom="294dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/RecycleMascota"
+        app:layout_constraintStart_toStartOf="@+id/seleccion"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_mascota" />
 </androidx.constraintlayout.widget.ConstraintLayout>

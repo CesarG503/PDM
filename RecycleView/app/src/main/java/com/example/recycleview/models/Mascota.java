@@ -47,4 +47,9 @@ public class Mascota {
     public void setImg(int img) {
         this.img = img;
     }
+
+    @Override
+    public String toString() {
+        return NombrePerro;
+    }
 }
