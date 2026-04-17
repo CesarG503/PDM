@@ -1,9 +1,12 @@
 package com.example.recycleview;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -15,7 +18,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.room.Room;
 
+import com.example.recycleview.DAOS.facturaDAO;
+import com.example.recycleview.DataBase.AppDatabase;
+import com.example.recycleview.Entitys.Cliente;
 import com.example.recycleview.adapter.ProductoAdapter;
 import com.example.recycleview.adapter.PruebaAdapter;
 import com.example.recycleview.models.Producto;
@@ -30,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Producto> dataProducto;
     public ProductoAdapter adapter;
+    public TextView mensaje;
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //this.deleteDatabase("db_facturas");
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -73,6 +82,39 @@ public class MainActivity extends AppCompatActivity {
 
         recycleViewProducto.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false) );
         recycleViewProducto.setAdapter(adapterPrueba);
+
+        mensaje = findViewById(R.id.mensaje);
+
+        SharedPreferences sheredPref = getSharedPreferences("Mis ajustes", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sheredPref.edit();
+
+        edit.putString("TOKEN", "123");
+        edit.apply();
+
+        mensaje.setText(sheredPref.getString("TOKEN", "No se encontro"));
+
+        database = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "db_facturas").allowMainThreadQueries().build();
+
+
+        Cliente cliente = new Cliente();
+
+        //cliente.nombreCliente = "goad";
+
+        facturaDAO dao = database.daoFacturas();
+
+        // Insertar
+        //dao.insertCliente(cliente);
+
+        cliente.idCliente = 8;
+        cliente.nombreCliente = "crazy8";
+
+        //Modificar
+        dao.updateNombreCliente("hector javier",3);
+        dao.updateCliente(cliente);
+
+        dao.deleteClienteID(6);
+
+
 
 
 
