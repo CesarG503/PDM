@@ -94,17 +94,12 @@ public class MainActivity extends AppCompatActivity {
         mensaje.setText(sheredPref.getString("TOKEN", "No se encontro"));
 
         database = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "db_facturas").allowMainThreadQueries().build();
-
-
-        Cliente cliente = new Cliente();
-
-        //cliente.nombreCliente = "goad";
-
         facturaDAO dao = database.daoFacturas();
 
+        Cliente cliente = new Cliente();
+        //cliente.nombreCliente = "goad";
         // Insertar
         //dao.insertCliente(cliente);
-
         cliente.idCliente = 8;
         cliente.nombreCliente = "crazy8";
 
