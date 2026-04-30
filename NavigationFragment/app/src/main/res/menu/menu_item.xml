@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/receta"
+        android:icon="@drawable/receta"
+        android:title="Receta" />
+
+    <item
+        android:id="@+id/ingrediente"
+        android:icon="@drawable/ingrediente"
+        android:title="Ingrediente" />
+    <item
+        android:id="@+id/persona"
+        android:icon="@drawable/persona"
+        android:title="Personas" />
+</menu>

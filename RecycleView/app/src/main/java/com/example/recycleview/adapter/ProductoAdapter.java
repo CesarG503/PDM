@@ -67,11 +67,9 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
 
         public Button button;
 
-        public ProductoVH(@NonNull View itemView) {
-
+        public ProductoVH(@NonNull View itemView){
 
             super(itemView);
-
             textNombre = itemView.findViewById(R.id.textNombre);
             textStock = itemView.findViewById(R.id.textStock);
             button = itemView.findViewById(R.id.button);
