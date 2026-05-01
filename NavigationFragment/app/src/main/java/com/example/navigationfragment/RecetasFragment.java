@@ -64,7 +64,6 @@ public class RecetasFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), RecetaActivityUI.class);
                 intent.putExtra("id", receta.id);
                 startActivity(intent);
-
             }
 
             @Override

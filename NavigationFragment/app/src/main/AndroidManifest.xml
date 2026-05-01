@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NavigationFragment">
         <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".RecetaActivityUI"
             android:exported="false" />
         <activity

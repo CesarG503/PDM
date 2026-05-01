@@ -3,64 +3,112 @@ package com.example.navigationfragment.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Database;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.navigationfragment.Adapter.AdapterIngrediente;
 import com.example.navigationfragment.R;
+import com.example.navigationfragment.dataBase.AppDatabase;
+import com.example.navigationfragment.entitys.Ingrediente;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link IngredientesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class IngredientesFragment extends Fragment {
+    private RecyclerView recyclerViewIngrediente;
+    private AdapterIngrediente adapterIngrediente;
+    private ArrayList<Ingrediente> ingredientesLista = new ArrayList<>();
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private AppDatabase db;
+    FloatingActionButton floatingActionButton3;
 
     public IngredientesFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment IngredientesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static IngredientesFragment newInstance(String param1, String param2) {
-        IngredientesFragment fragment = new IngredientesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ingredientes, container, false);
+        View view = inflater.inflate(R.layout.fragment_ingredientes, container, false);
+
+        db = AppDatabase.getINSTANCE(getContext());
+
+        recyclerViewIngrediente = view.findViewById(R.id.recyclerViewIngrediente);
+
+        recyclerViewIngrediente.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+
+
+
+        adapterIngrediente = new AdapterIngrediente(ingredientesLista, new AdapterIngrediente.Listener() {
+            @Override
+            public void OnClick(Ingrediente ingrediente) {
+
+            }
+
+            @Override
+            public void OnDeleteClick(Ingrediente ingrediente) {
+
+            }
+
+            @Override
+            public void OnUpdateClick(Ingrediente ingrediente) {
+
+            }
+        });
+        recyclerViewIngrediente.setAdapter(adapterIngrediente);
+
+        floatingActionButton3 = view.findViewById(R.id.floatingActionButton3);
+
+        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+
+            }
+        });
+        return view ;
+
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        loadIngrediente();
+    }
+
+    private void loadIngrediente()
+    {
+        AppDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                List<Ingrediente> list = db.daoIngrediente().obtenerTodos();
+
+                if (getActivity() != null)
+                {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ingredientesLista.clear();
+                            ingredientesLista.addAll(list);
+                            adapterIngrediente.notifyDataSetChanged();
+
+                        }
+                    });
+                }
+            }
+        });
     }
 }
